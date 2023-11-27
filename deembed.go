@@ -19,6 +19,10 @@ func getPlatform(a string) exec {
 	}
 }
 
+func start(e exec, a string) {
+	e.Open(a)
+}
+
 func deembed(a string) {
 	bi, err := getBuildInfo(a)
 	if err != nil {
@@ -27,6 +31,6 @@ func deembed(a string) {
 	}
 	os := getBuildInfoSetting(bi, "GOOS")
 	exe := getPlatform(os)
-	exe.Open(a)
+	start(exe, a)
 
 }
