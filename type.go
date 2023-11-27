@@ -5,7 +5,7 @@ import (
 	"runtime/debug"
 )
 
-type exdec interface {
+type exec interface {
 	Open(string)
 	Close()
 }

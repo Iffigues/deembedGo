@@ -1,21 +1,21 @@
 package main
 
 import (
+	"deembed/macho"
 	"fmt"
 	"os"
-	"runtime"
 )
 
-func getPlatform() string {
-	switch runtime.GOOS {
+func getPlatform(a string) exec {
+	switch a {
 	case "windows":
-		return "Windows"
+		return nil
 	case "darwin":
-		return "macOS"
+		return &macho.Macho{}
 	case "linux":
-		return "Linux"
+		return nil
 	default:
-		return "Other"
+		return nil
 	}
 }
 
@@ -26,6 +26,7 @@ func deembed(a string) {
 		os.Exit(1)
 	}
 	os := getBuildInfoSetting(bi, "GOOS")
-	arch := getBuildInfoSetting(bi, "GOARCH")
-	fmt.Println(os, arch)
+	exe := getPlatform(os)
+	exe.Open(a)
+
 }
