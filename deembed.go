@@ -32,7 +32,7 @@ func deembed(a string) {
 	goos := getBuildInfoSetting(bi, "GOOS")
 	exe := getPlatform(goos)
 	if exe == nil {
-		fmt.Println("not gerer")
+		fmt.Print("operating system ", goos, " is not gerer\n")
 		os.Exit(1)
 	}
 	start(exe, a)
