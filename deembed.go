@@ -29,8 +29,12 @@ func deembed(a string) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	os := getBuildInfoSetting(bi, "GOOS")
-	exe := getPlatform(os)
+	goos := getBuildInfoSetting(bi, "GOOS")
+	exe := getPlatform(goos)
+	if exe == nil {
+		fmt.Println("not gerer")
+		os.Exit(1)
+	}
 	start(exe, a)
 
 }
